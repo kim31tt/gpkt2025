@@ -5,24 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>プロフィールページ</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
       margin: 0;
       background-color: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
     }
-    .profile {
-      text-align: center;
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 900px;
+      gap: 20px;
+    }
+
+    .profile, form {
       background: #fff;
       padding: 30px;
       border-radius: 15px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      max-width: 350px;
-      margin-bottom: 20px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
     }
+
     .profile img {
       width: 150px;
       height: 150px;
@@ -30,32 +44,37 @@
       border-radius: 50%;
       margin-bottom: 20px;
     }
+
     .profile h1 {
       margin: 0 0 10px 0;
       font-size: 1.5rem;
     }
+
     .profile p {
       font-size: 1rem;
       color: #555;
       line-height: 1.5;
     }
+
     form {
-      background: #fff;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      max-width: 350px;
-      width: 100%;
       text-align: left;
     }
+
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
     form input, form textarea {
       width: 100%;
       padding: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       border-radius: 8px;
       border: 1px solid #ccc;
       font-size: 1rem;
     }
+
     form button {
       width: 100%;
       padding: 10px;
@@ -66,31 +85,45 @@
       font-size: 1rem;
       cursor: pointer;
     }
+
     form button:hover {
       background-color: #0056b3;
+    }
+
+    /* Tablet 以上で横並びにする */
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .profile, form {
+        max-width: 45%;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="profile">
-    <img src="me.jpg" alt="プロフィール画像">
-    <h1>辻貴美恵</h1>
-    <p>二級建築士/宅地建物取引士</p>
+  <div class="container">
+    <div class="profile">
+      <img src="me.jpg" alt="プロフィール画像">
+      <h1>辻貴美恵</h1>
+      <p>二級建築士/宅地建物取引士</p>
+    </div>
+
+    <!-- 問い合わせフォーム -->
+    <form action="https://formspree.io/f/xdkwbeqe" method="POST">
+      <label for="name">お名前</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">メールアドレス</label>
+      <input type="email" id="email" name="_replyto" required>
+
+      <label for="message">メッセージ</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">送信</button>
+    </form>
   </div>
-
-  <!-- 問い合わせフォーム -->
-  <form action="https://formspree.io/f/xdkwbeqe" method="POST">
-    <label for="name">お名前</label>
-    <input type="text" id="name" name="name" required>
-
-    <label for="email">メールアドレス</label>
-    <input type="email" id="email" name="_replyto" required>
-
-    <label for="message">メッセージ</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
-
-    <button type="submit">送信</button>
-  </form>
-
 </body>
 </html>
