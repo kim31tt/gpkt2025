@@ -20,7 +20,7 @@
 
     .container {
       display: flex;
-      flex-direction: column; /* 常に上下に並べる */
+      flex-direction: column; /* 上下並び固定 */
       align-items: center;
       width: 100%;
       max-width: 500px;
@@ -46,7 +46,6 @@
       object-fit: cover;
       border-radius: 50%;
       margin-bottom: 20px;
-      border: 3px solid #007bff;
     }
 
     .profile h1 {
@@ -62,6 +61,14 @@
     }
 
     /* フォーム */
+    .form-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
     form label {
       display: block;
       margin-bottom: 6px;
@@ -99,8 +106,6 @@
     form button:hover {
       background-color: #0056b3;
     }
-
-    /* メディアクエリは不要。上下並び固定 */
   </style>
 </head>
 <body>
@@ -110,6 +115,9 @@
       <h1>辻貴美恵</h1>
       <p>二級建築士/宅地建物取引士</p>
     </div>
+
+    <!-- フォーム前タイトル -->
+    <div class="form-title">お問い合わせ</div>
 
     <form action="https://formspree.io/f/xdkwbeqe" method="POST">
       <label for="name">お名前</label>
@@ -126,4 +134,3 @@
   </div>
 </body>
 </html>
-
