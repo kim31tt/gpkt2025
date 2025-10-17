@@ -8,99 +8,99 @@
     * {
       box-sizing: border-box;
     }
+
     body {
-      font-family: sans-serif;
+      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
       margin: 0;
-      background-color: #f7f7f7;
+      background-color: #f0f2f5;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
       padding: 20px;
     }
 
     .container {
       display: flex;
-      flex-direction: column;
+      flex-direction: column; /* 常に上下に並べる */
       align-items: center;
       width: 100%;
-      max-width: 900px;
-      gap: 20px;
+      max-width: 500px;
+      gap: 30px;
     }
 
     .profile, form {
       background: #fff;
-      padding: 30px;
+      padding: 30px 25px;
       border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
       width: 100%;
-      max-width: 400px;
+    }
+
+    /* プロフィール */
+    .profile {
       text-align: center;
     }
 
     .profile img {
-      width: 150px;
-      height: 150px;
+      width: 140px;
+      height: 140px;
       object-fit: cover;
       border-radius: 50%;
       margin-bottom: 20px;
+      border: 3px solid #007bff;
     }
 
     .profile h1 {
-      margin: 0 0 10px 0;
-      font-size: 1.5rem;
+      margin: 0 0 8px 0;
+      font-size: 1.7rem;
+      color: #333;
     }
 
     .profile p {
-      font-size: 1rem;
-      color: #555;
+      font-size: 1.05rem;
+      color: #666;
       line-height: 1.5;
     }
 
-    form {
-      text-align: left;
-    }
-
+    /* フォーム */
     form label {
       display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #333;
     }
 
     form input, form textarea {
       width: 100%;
-      padding: 10px;
+      padding: 12px 10px;
       margin-bottom: 15px;
-      border-radius: 8px;
+      border-radius: 10px;
       border: 1px solid #ccc;
       font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    form input:focus, form textarea:focus {
+      border-color: #007bff;
+      outline: none;
     }
 
     form button {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       background-color: #007bff;
       color: #fff;
       border: none;
-      border-radius: 8px;
-      font-size: 1rem;
+      border-radius: 10px;
+      font-size: 1.1rem;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
 
     form button:hover {
       background-color: #0056b3;
     }
 
-    /* Tablet 以上で横並びにする */
-    @media (min-width: 768px) {
-      .container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-      }
-      .profile, form {
-        max-width: 45%;
-      }
-    }
+    /* メディアクエリは不要。上下並び固定 */
   </style>
 </head>
 <body>
@@ -111,7 +111,6 @@
       <p>二級建築士/宅地建物取引士</p>
     </div>
 
-    <!-- 問い合わせフォーム -->
     <form action="https://formspree.io/f/xdkwbeqe" method="POST">
       <label for="name">お名前</label>
       <input type="text" id="name" name="name" required>
@@ -127,3 +126,4 @@
   </div>
 </body>
 </html>
+
