@@ -17,7 +17,6 @@
       position: relative;
     }
 
-    /* 言語選択プルダウン */
     .lang-select {
       position: absolute;
       top: 20px;
@@ -73,7 +72,6 @@
       margin-bottom: 15px;
     }
 
-    /* 折りたたみボタン */
     .toggle-btn {
       background-color: #007bff;
       color: white;
@@ -97,7 +95,16 @@
     }
 
     .fold-content p {
-      margin: 5px 0;
+      margin: 8px 0;
+    }
+
+    .fold-content ul {
+      margin: 5px 0 10px 20px;
+      padding: 0;
+    }
+
+    .fold-content li {
+      margin-bottom: 4px;
     }
 
     .toggle-form {
@@ -170,7 +177,6 @@
 </head>
 <body>
 
-  <!-- 国旗付き言語選択 -->
   <select class="lang-select" id="langSelect" onchange="changeLanguage(this.value)">
     <option value="ja">🇯🇵 日本語</option>
     <option value="en">🇬🇧 English</option>
@@ -199,22 +205,19 @@
 
       <button class="toggle-btn" onclick="toggleProfile()">資格・略歴を見る</button>
       <div class="fold-content">
-        <p><strong data-ja="資格" data-en="Qualifications" data-fr="Qualifications" data-tr="Nitelikler">資格:</strong> 
-          <span data-ja="二級建築士, 宅地建物取引士, 2級ファイナンシャル・プランニング技能士" 
-                data-en="Architect (Japan), Real Estate Agent, Level 2 Financial Planner" 
-                data-fr="Architecte (Japon), Agent immobilier, Planificateur financier niveau 2" 
-                data-tr="İkinci Derece Mimar, Emlakçı, Seviye 2 Finansal Planlayıcı">
-          二級建築士, 宅地建物取引士, 2級ファイナンシャル・プランニング技能士
-          </span>
-        </p>
-        <p><strong data-ja="略歴" data-en="Bio" data-fr="Parcours" data-tr="Özgeçmiş">略歴:</strong> 
-          <span data-ja="1999年三重県伊勢市生まれ" 
-                data-en="Born in 1999, Ise City, Mie Prefecture, Japan" 
-                data-fr="Né en 1999, Ise, préfecture de Mie, Japon" 
-                data-tr="1999 doğumlu, Ise Şehri, Mie Prefecture, Japonya">
-          1999年三重県伊勢市生まれ
-          </span>
-        </p>
+        <p><strong data-ja="資格" data-en="Qualifications" data-fr="Qualifications" data-tr="Nitelikler">資格:</strong></p>
+        <ul>
+          <li data-ja="二級建築士" data-en="Architect (Japan)" data-fr="Architecte (Japon)" data-tr="İkinci Derece Mimar">二級建築士</li>
+          <li data-ja="宅地建物取引士" data-en="Real Estate Agent" data-fr="Agent immobilier" data-tr="Emlakçı">宅地建物取引士</li>
+          <li data-ja="2級ファイナンシャル・プランニング技能士" data-en="Level 2 Financial Planner" data-fr="Planificateur financier niveau 2" data-tr="Seviye 2 Finansal Planlayıcı">2級ファイナンシャル・プランニング技能士</li>
+        </ul>
+
+        <p><strong data-ja="略歴" data-en="Bio" data-fr="Parcours" data-tr="Özgeçmiş">略歴:</strong></p>
+        <ul>
+          <li data-year="1999" data-ja="三重県伊勢市生まれ" data-en="Born in Ise City, Mie Prefecture, Japan" data-fr="Né à Ise, préfecture de Mie, Japon" data-tr="Ise Şehri, Mie Prefecture, Japonya'da doğdu">1999年 三重県伊勢市生まれ</li>
+          <li data-year="2021" data-ja="大学卒業後、ハウスメーカーに就職" data-en="After university graduation, joined a house builder" data-fr="Après l'université, rejoint un constructeur de maisons" data-tr="Üniversite mezuniyetinden sonra bir inşaat firmasında işe başladı">2021年 大学卒業後、ハウスメーカーに就職</li>
+          <li data-year="2024" data-ja="ハウスメーカーを退社し、studio古庄先生に師事" data-en="Left house builder, studied under Studio Furusho" data-fr="Quitte le constructeur de maisons, étudie sous Studio Furusho" data-tr="İnşaat firmasından ayrıldı, Studio Furusho'dan eğitim aldı">2024年 ハウスメーカーを退社し、studio古庄先生に師事</li>
+        </ul>
       </div>
     </div>
 
@@ -229,64 +232,3 @@
       <form action="https://formspree.io/f/xdkwbeqe" method="POST">
         <div class="form-title" 
           data-ja="お問い合わせ" 
-          data-en="Contact" 
-          data-fr="Contact" 
-          data-tr="İletişim">
-          お問い合わせ
-        </div>
-
-        <label for="name" 
-          data-ja="お名前" 
-          data-en="Your Name" 
-          data-fr="Votre nom" 
-          data-tr="Adınız">お名前</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="email" 
-          data-ja="メールアドレス" 
-          data-en="Email" 
-          data-fr="Adresse e-mail" 
-          data-tr="E-posta adresi">メールアドレス</label>
-        <input type="email" id="email" name="_replyto" required>
-
-        <label for="message" 
-          data-ja="メッセージ" 
-          data-en="Message" 
-          data-fr="Message" 
-          data-tr="Mesajınız">メッセージ</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-
-        <button type="submit" 
-          data-ja="送信" 
-          data-en="Send" 
-          data-fr="Envoyer" 
-          data-tr="Gönder">送信</button>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    // プロフィール折りたたみ
-    function toggleProfile() {
-      const content = document.querySelector('.fold-content');
-      content.style.display = (content.style.display === 'block') ? 'none' : 'block';
-    }
-
-    // お問い合わせフォーム折りたたみ
-    function toggleForm() {
-      const form = document.querySelector('form');
-      form.style.display = (form.style.display === 'block') ? 'none' : 'block';
-    }
-
-    // 言語切り替え
-    function changeLanguage(lang) {
-      const elements = document.querySelectorAll('[data-ja]');
-      elements.forEach(el => {
-        if(el.getAttribute(`data-${lang}`)){
-          el.textContent = el.getAttribute(`data-${lang}`);
-        }
-      });
-    }
-  </script>
-</body>
-</html>
