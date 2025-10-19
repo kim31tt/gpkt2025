@@ -6,7 +6,6 @@
   <title>プロフィールページ</title>
   <style>
     * { box-sizing: border-box; }
-
     body {
       font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
       margin: 0;
@@ -119,9 +118,7 @@
       transition: background-color 0.3s;
     }
 
-    .toggle-form:hover {
-      background-color: #0056b3;
-    }
+    .toggle-form:hover { background-color: #0056b3; }
 
     form {
       display: none;
@@ -170,9 +167,7 @@
       transition: background-color 0.3s;
     }
 
-    form button:hover {
-      background-color: #0056b3;
-    }
+    form button:hover { background-color: #0056b3; }
   </style>
 </head>
 <body>
@@ -187,23 +182,11 @@
   <div class="container">
     <div class="profile">
       <img src="me.jpg" alt="プロフィール画像">
-      <h1 
-        data-ja="辻貴美恵" 
-        data-en="Kimie Tsuji" 
-        data-fr="Kimie Tsuji" 
-        data-tr="Kimie Tsuji">
-        辻貴美恵
-      </h1>
+      <h1 data-ja="辻貴美恵" data-en="Kimie Tsuji" data-fr="Kimie Tsuji" data-tr="Kimie Tsuji">辻貴美恵</h1>
+      <p data-ja="二級建築士 / 宅地建物取引士" data-en="Architect (Japan) / Real Estate Agent" data-fr="Architecte (Japon) / Agent immobilier" data-tr="Mimar (Japonya) / Emlakçı">二級建築士 / 宅地建物取引士</p>
 
-      <p 
-        data-ja="二級建築士 / 宅地建物取引士" 
-        data-en="Architect (Japan)" 
-        data-fr="Architecte (Japon)" 
-        data-tr="Mimar (Japonya)">
-        二級建築士 / 宅地建物取引士
-      </p>
+      <button class="toggle-btn" onclick="toggleProfile()" data-ja="資格・略歴を見る" data-en="View Qualifications & Bio" data-fr="Voir Qualifications & Parcours" data-tr="Nitelikler & Özgeçmiş">資格・略歴を見る</button>
 
-      <button class="toggle-btn" onclick="toggleProfile()">資格・略歴を見る</button>
       <div class="fold-content">
         <p><strong data-ja="資格" data-en="Qualifications" data-fr="Qualifications" data-tr="Nitelikler">資格:</strong></p>
         <ul>
@@ -222,13 +205,51 @@
     </div>
 
     <div class="form-container">
-      <button class="toggle-form" 
-        data-ja="お問い合わせ" 
-        data-en="Contact" 
-        data-fr="Contact" 
-        data-tr="İletişim" 
-        onclick="toggleForm()">お問い合わせ</button>
+      <button class="toggle-form" onclick="toggleForm()" data-ja="お問い合わせ" data-en="Contact" data-fr="Contact" data-tr="İletişim">お問い合わせ</button>
 
       <form action="https://formspree.io/f/xdkwbeqe" method="POST">
-        <div class="form-title" 
-          data-ja="お問い合わせ" 
+        <div class="form-title" data-ja="お問い合わせ" data-en="Contact" data-fr="Contact" data-tr="İletişim">お問い合わせ</div>
+
+        <label for="name" data-ja="お名前" data-en="Your Name" data-fr="Votre nom" data-tr="Adınız">お名前</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email" data-ja="メールアドレス" data-en="Email" data-fr="Adresse e-mail" data-tr="E-posta adresi">メールアドレス</label>
+        <input type="email" id="email" name="_replyto" required>
+
+        <label for="message" data-ja="メッセージ" data-en="Message" data-fr="Message" data-tr="Mesajınız">メッセージ</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit" data-ja="送信" data-en="Send" data-fr="Envoyer" data-tr="Gönder">送信</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // プロフィール折りたたみ
+    function toggleProfile() {
+      const content = document.querySelector('.fold-content');
+      content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // お問い合わせフォーム折りたたみ
+    function toggleForm() {
+      const form = document.querySelector('.form-container form');
+      form.style.display = (form.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // 言語切替
+    function changeLanguage(lang) {
+      document.querySelectorAll('[data-ja]').forEach(el => {
+        const text = el.getAttribute(`data-${lang}`);
+        if(text) el.textContent = text;
+      });
+    }
+
+    // 初期表示で選択言語を反映
+    window.addEventListener('DOMContentLoaded', () => {
+      const lang = document.getElementById('langSelect').value;
+      changeLanguage(lang);
+    });
+  </script>
+</body>
+</html>
