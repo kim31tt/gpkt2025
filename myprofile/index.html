@@ -157,26 +157,66 @@
   <div class="container">
     <div class="profile">
       <img src="me.jpg" alt="プロフィール画像">
-      <h1 data-ja="辻貴美恵" data-en="Kimie Tsuji">辻貴美恵</h1>
-      <p data-ja="二級建築士 / 宅地建物取引士" data-en="Architect / Real Estate Agent">二級建築士 / 宅地建物取引士</p>
+      <h1 
+        data-ja="辻貴美恵" 
+        data-en="Kimie Tsuji" 
+        data-fr="Kimie Tsuji" 
+        data-tr="Kimie Tsuji">
+        辻貴美恵
+      </h1>
+
+      <p 
+        data-ja="二級建築士 / 宅地建物取引士" 
+        data-en="Architect (Japan) / Real Estate Agent" 
+        data-fr="Architecte (Japon) / Agent immobilier" 
+        data-tr="Mimar (Japonya) / Emlak Danışmanı">
+        二級建築士 / 宅地建物取引士
+      </p>
     </div>
 
     <div class="form-container">
-      <button class="toggle-form" onclick="toggleForm()">お問い合わせ</button>
+      <button class="toggle-form" 
+        data-ja="お問い合わせ" 
+        data-en="Contact" 
+        data-fr="Contact" 
+        data-tr="İletişim" 
+        onclick="toggleForm()">お問い合わせ</button>
 
       <form action="https://formspree.io/f/xdkwbeqe" method="POST">
-        <div class="form-title" data-ja="お問い合わせ" data-en="Contact">お問い合わせ</div>
+        <div class="form-title" 
+          data-ja="お問い合わせ" 
+          data-en="Contact" 
+          data-fr="Contact" 
+          data-tr="İletişim">
+          お問い合わせ
+        </div>
 
-        <label for="name" data-ja="お名前" data-en="Your Name">お名前</label>
+        <label for="name" 
+          data-ja="お名前" 
+          data-en="Your Name" 
+          data-fr="Votre nom" 
+          data-tr="Adınız">お名前</label>
         <input type="text" id="name" name="name" required>
 
-        <label for="email" data-ja="メールアドレス" data-en="Email">メールアドレス</label>
+        <label for="email" 
+          data-ja="メールアドレス" 
+          data-en="Email" 
+          data-fr="Adresse e-mail" 
+          data-tr="E-posta adresi">メールアドレス</label>
         <input type="email" id="email" name="_replyto" required>
 
-        <label for="message" data-ja="メッセージ" data-en="Message">メッセージ</label>
+        <label for="message" 
+          data-ja="メッセージ" 
+          data-en="Message" 
+          data-fr="Message" 
+          data-tr="Mesajınız">メッセージ</label>
         <textarea id="message" name="message" rows="5" required></textarea>
 
-        <button type="submit" data-ja="送信" data-en="Send">送信</button>
+        <button type="submit" 
+          data-ja="送信" 
+          data-en="Send" 
+          data-fr="Envoyer" 
+          data-tr="Gönder">送信</button>
       </form>
     </div>
   </div>
@@ -188,17 +228,25 @@
       form.style.display = (form.style.display === 'block') ? 'none' : 'block';
     }
 
-    // 言語切り替え
-    let currentLang = 'ja';
+    // 言語切り替え制御
+    const languages = ['ja', 'en', 'fr', 'tr'];
+    let currentIndex = 0;
+
     function toggleLanguage() {
+      currentIndex = (currentIndex + 1) % languages.length;
+      const lang = languages[currentIndex];
       const elements = document.querySelectorAll('[data-ja]');
-      currentLang = currentLang === 'ja' ? 'en' : 'ja';
+
       elements.forEach(el => {
-        el.textContent = el.getAttribute(`data-${currentLang}`);
+        el.textContent = el.getAttribute(`data-${lang}`);
       });
-      document.querySelector('.lang-toggle').textContent = currentLang === 'ja' ? 'English' : '日本語';
+
+      const langNames = { ja: '日本語', en: 'English', fr: 'Français', tr: 'Türkçe' };
+      const nextLang = languages[(currentIndex + 1) % languages.length];
+      document.querySelector('.lang-toggle').textContent = langNames[nextLang];
     }
   </script>
 </body>
 </html>
+
 
