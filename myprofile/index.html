@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>プロフィールページ</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
@@ -19,23 +17,17 @@
       position: relative;
     }
 
-    /* 言語切り替えボタン */
-    .lang-toggle {
+    /* 言語選択プルダウン */
+    .lang-select {
       position: absolute;
       top: 20px;
       right: 20px;
-      background: #007bff;
-      color: white;
-      border: none;
+      padding: 8px 12px;
       border-radius: 8px;
-      padding: 8px 14px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 0.95rem;
       cursor: pointer;
-      font-size: 0.9rem;
-      transition: background 0.3s;
-    }
-
-    .lang-toggle:hover {
-      background: #0056b3;
     }
 
     .container {
@@ -56,7 +48,6 @@
       width: 100%;
     }
 
-    /* プロフィール */
     .profile {
       text-align: center;
     }
@@ -81,7 +72,6 @@
       line-height: 1.5;
     }
 
-    /* 折りたたみボタン */
     .toggle-form {
       background-color: #007bff;
       color: white;
@@ -98,7 +88,6 @@
       background-color: #0056b3;
     }
 
-    /* フォーム */
     form {
       display: none;
       margin-top: 20px;
@@ -152,7 +141,14 @@
   </style>
 </head>
 <body>
-  <button class="lang-toggle" onclick="toggleLanguage()">English</button>
+
+  <!-- 国旗付き言語選択 -->
+  <select class="lang-select" id="langSelect" onchange="changeLanguage(this.value)">
+    <option value="ja">🇯🇵 日本語</option>
+    <option value="en">🇬🇧 English</option>
+    <option value="fr">🇫🇷 Français</option>
+    <option value="tr">🇹🇷 Türkçe</option>
+  </select>
 
   <div class="container">
     <div class="profile">
@@ -229,24 +225,15 @@
     }
 
     // 言語切り替え制御
-    const languages = ['ja', 'en', 'fr', 'tr'];
-    let currentIndex = 0;
-
-    function toggleLanguage() {
-      currentIndex = (currentIndex + 1) % languages.length;
-      const lang = languages[currentIndex];
+    function changeLanguage(lang) {
       const elements = document.querySelectorAll('[data-ja]');
-
       elements.forEach(el => {
-        el.textContent = el.getAttribute(`data-${lang}`);
+        if (el.getAttribute(`data-${lang}`)) {
+          el.textContent = el.getAttribute(`data-${lang}`);
+        }
       });
-
-      const langNames = { ja: '日本語', en: 'English', fr: 'Français', tr: 'Türkçe' };
-      const nextLang = languages[(currentIndex + 1) % languages.length];
-      document.querySelector('.lang-toggle').textContent = langNames[nextLang];
     }
   </script>
 </body>
 </html>
-
 
