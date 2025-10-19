@@ -36,7 +36,7 @@
       align-items: center;
       width: 100%;
       max-width: 500px;
-      gap: 30px;
+      gap: 20px;
       margin-top: 60px;
     }
 
@@ -70,6 +70,34 @@
       font-size: 1.05rem;
       color: #666;
       line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    /* 折りたたみボタン */
+    .toggle-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+    .toggle-btn:hover { background-color: #0056b3; }
+
+    .fold-content {
+      display: none;
+      text-align: left;
+      margin-top: 10px;
+      padding-left: 10px;
+    }
+
+    .fold-content p {
+      margin: 5px 0;
     }
 
     .toggle-form {
@@ -165,9 +193,29 @@
         data-ja="二級建築士 / 宅地建物取引士" 
         data-en="Architect (Japan)" 
         data-fr="Architecte (Japon)" 
-        data-tr="Mimar (Japonya)ı">
+        data-tr="Mimar (Japonya)">
         二級建築士 / 宅地建物取引士
       </p>
+
+      <button class="toggle-btn" onclick="toggleProfile()">資格・略歴を見る</button>
+      <div class="fold-content">
+        <p><strong data-ja="資格" data-en="Qualifications" data-fr="Qualifications" data-tr="Nitelikler">資格:</strong> 
+          <span data-ja="二級建築士, 宅地建物取引士, 2級ファイナンシャル・プランニング技能士" 
+                data-en="Architect (Japan), Real Estate Agent, Level 2 Financial Planner" 
+                data-fr="Architecte (Japon), Agent immobilier, Planificateur financier niveau 2" 
+                data-tr="İkinci Derece Mimar, Emlakçı, Seviye 2 Finansal Planlayıcı">
+          二級建築士, 宅地建物取引士, 2級ファイナンシャル・プランニング技能士
+          </span>
+        </p>
+        <p><strong data-ja="略歴" data-en="Bio" data-fr="Parcours" data-tr="Özgeçmiş">略歴:</strong> 
+          <span data-ja="1999年三重県伊勢市生まれ" 
+                data-en="Born in 1999, Ise City, Mie Prefecture, Japan" 
+                data-fr="Né en 1999, Ise, préfecture de Mie, Japon" 
+                data-tr="1999 doğumlu, Ise Şehri, Mie Prefecture, Japonya">
+          1999年三重県伊勢市生まれ
+          </span>
+        </p>
+      </div>
     </div>
 
     <div class="form-container">
@@ -218,17 +266,23 @@
   </div>
 
   <script>
-    // 折りたたみ制御
+    // プロフィール折りたたみ
+    function toggleProfile() {
+      const content = document.querySelector('.fold-content');
+      content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // お問い合わせフォーム折りたたみ
     function toggleForm() {
       const form = document.querySelector('form');
       form.style.display = (form.style.display === 'block') ? 'none' : 'block';
     }
 
-    // 言語切り替え制御
+    // 言語切り替え
     function changeLanguage(lang) {
       const elements = document.querySelectorAll('[data-ja]');
       elements.forEach(el => {
-        if (el.getAttribute(`data-${lang}`)) {
+        if(el.getAttribute(`data-${lang}`)){
           el.textContent = el.getAttribute(`data-${lang}`);
         }
       });
@@ -236,4 +290,3 @@
   </script>
 </body>
 </html>
-
