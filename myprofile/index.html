@@ -16,18 +16,39 @@
       display: flex;
       justify-content: center;
       padding: 20px;
+      position: relative;
+    }
+
+    /* 言語切り替えボタン */
+    .lang-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.3s;
+    }
+
+    .lang-toggle:hover {
+      background: #0056b3;
     }
 
     .container {
       display: flex;
-      flex-direction: column; /* 上下並び固定 */
+      flex-direction: column;
       align-items: center;
       width: 100%;
       max-width: 500px;
       gap: 30px;
+      margin-top: 60px;
     }
 
-    .profile, form {
+    .profile, .form-container {
       background: #fff;
       padding: 30px 25px;
       border-radius: 15px;
@@ -60,7 +81,29 @@
       line-height: 1.5;
     }
 
+    /* 折りたたみボタン */
+    .toggle-form {
+      background-color: #007bff;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      width: 100%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .toggle-form:hover {
+      background-color: #0056b3;
+    }
+
     /* フォーム */
+    form {
+      display: none;
+      margin-top: 20px;
+    }
+
     .form-title {
       font-size: 1.5rem;
       font-weight: 600;
@@ -109,28 +152,53 @@
   </style>
 </head>
 <body>
+  <button class="lang-toggle" onclick="toggleLanguage()">English</button>
+
   <div class="container">
     <div class="profile">
       <img src="me.jpg" alt="プロフィール画像">
-      <h1>辻貴美恵</h1>
-      <p>二級建築士/宅地建物取引士</p>
+      <h1 data-ja="辻貴美恵" data-en="Kimie Tsuji">辻貴美恵</h1>
+      <p data-ja="二級建築士 / 宅地建物取引士" data-en="Architect / Real Estate Agent">二級建築士 / 宅地建物取引士</p>
     </div>
 
-    <form action="https://formspree.io/f/xdkwbeqe" method="POST">
-      <!-- フォーム内タイトル -->
-      <div class="form-title">お問い合わせ</div>
+    <div class="form-container">
+      <button class="toggle-form" onclick="toggleForm()">お問い合わせ</button>
 
-      <label for="name">お名前</label>
-      <input type="text" id="name" name="name" required>
+      <form action="https://formspree.io/f/xdkwbeqe" method="POST">
+        <div class="form-title" data-ja="お問い合わせ" data-en="Contact">お問い合わせ</div>
 
-      <label for="email">メールアドレス</label>
-      <input type="email" id="email" name="_replyto" required>
+        <label for="name" data-ja="お名前" data-en="Your Name">お名前</label>
+        <input type="text" id="name" name="name" required>
 
-      <label for="message">メッセージ</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
+        <label for="email" data-ja="メールアドレス" data-en="Email">メールアドレス</label>
+        <input type="email" id="email" name="_replyto" required>
 
-      <button type="submit">送信</button>
-    </form>
+        <label for="message" data-ja="メッセージ" data-en="Message">メッセージ</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit" data-ja="送信" data-en="Send">送信</button>
+      </form>
+    </div>
   </div>
+
+  <script>
+    // 折りたたみ制御
+    function toggleForm() {
+      const form = document.querySelector('form');
+      form.style.display = (form.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // 言語切り替え
+    let currentLang = 'ja';
+    function toggleLanguage() {
+      const elements = document.querySelectorAll('[data-ja]');
+      currentLang = currentLang === 'ja' ? 'en' : 'ja';
+      elements.forEach(el => {
+        el.textContent = el.getAttribute(`data-${currentLang}`);
+      });
+      document.querySelector('.lang-toggle').textContent = currentLang === 'ja' ? 'English' : '日本語';
+    }
+  </script>
 </body>
 </html>
+
