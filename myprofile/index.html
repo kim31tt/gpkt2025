@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>プロフィールページ</title>
   <style>
     * { box-sizing: border-box; }
+
     body {
       font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
       margin: 0;
@@ -46,9 +47,7 @@
       width: 100%;
     }
 
-    .profile {
-      text-align: center;
-    }
+    .profile { text-align: center; }
 
     .profile img {
       width: 140px;
@@ -67,24 +66,22 @@
     .profile p {
       font-size: 1.05rem;
       color: #666;
-      line-height: 1.5;
       margin-bottom: 15px;
     }
 
     .toggle-btn {
-      background-color: #007bff;
-      color: white;
-      padding: 10px;
-      border: none;
+      background: #e7f1ff;
+      color: #0056b3;
+      padding: 8px;
+      border: 1px solid #bcd4ff;
       border-radius: 8px;
-      width: 100%;
-      font-size: 1rem;
+      font-size: 0.95rem;
       cursor: pointer;
-      transition: background-color 0.3s;
-      margin-top: 5px;
-      margin-bottom: 10px;
+      width: 100%;
+      transition: all 0.3s ease;
     }
-    .toggle-btn:hover { background-color: #0056b3; }
+
+    .toggle-btn:hover { background-color: #d6e7ff; }
 
     .fold-content {
       display: none;
@@ -93,17 +90,15 @@
       padding-left: 10px;
     }
 
-    .fold-content p {
-      margin: 8px 0;
+    .fold-content strong {
+      display: block;
+      margin-top: 10px;
+      font-weight: 600;
     }
 
     .fold-content ul {
       margin: 5px 0 10px 20px;
       padding: 0;
-    }
-
-    .fold-content li {
-      margin-bottom: 4px;
     }
 
     .toggle-form {
@@ -147,7 +142,6 @@
       border-radius: 10px;
       border: 1px solid #ccc;
       font-size: 1rem;
-      transition: border-color 0.3s;
     }
 
     form input:focus, form textarea:focus {
@@ -172,7 +166,8 @@
 </head>
 <body>
 
-  <select class="lang-select" id="langSelect" onchange="changeLanguage(this.value)">
+  <!-- 言語選択 -->
+  <select class="lang-select" id="langSelect">
     <option value="ja">🇯🇵 日本語</option>
     <option value="en">🇬🇧 English</option>
     <option value="fr">🇫🇷 Français</option>
@@ -180,76 +175,150 @@
   </select>
 
   <div class="container">
+
+    <!-- プロフィール -->
     <div class="profile">
       <img src="me.jpg" alt="プロフィール画像">
-      <h1 data-ja="辻貴美恵" data-en="Kimie Tsuji" data-fr="Kimie Tsuji" data-tr="Kimie Tsuji">辻貴美恵</h1>
-      <p data-ja="二級建築士 / 宅地建物取引士" data-en="Architect (Japan) / Real Estate Agent" data-fr="Architecte (Japon) / Agent immobilier" data-tr="Mimar (Japonya) / Emlakçı">二級建築士 / 宅地建物取引士</p>
+      <h1 data-translations='{
+        "ja": "辻貴美恵",
+        "en": "Kimie Tsuji",
+        "fr": "Kimie Tsuji",
+        "tr": "Kimie Tsuji"
+      }'>辻貴美恵</h1>
 
-      <button class="toggle-btn" onclick="toggleProfile()" data-ja="資格・略歴を見る" data-en="View Qualifications & Bio" data-fr="Voir Qualifications & Parcours" data-tr="Nitelikler & Özgeçmiş">資格・略歴を見る</button>
+      <p data-translations='{
+        "ja": "建築士",
+        "en": "Architect (Japan)",
+        "fr": "Architecte (Japon)",
+        "tr": "Mimar (Japonya)"
+      }'>建築士</p>
 
-      <div class="fold-content">
-        <p><strong data-ja="資格" data-en="Qualifications" data-fr="Qualifications" data-tr="Nitelikler">資格:</strong></p>
-        <ul>
-          <li data-ja="二級建築士" data-en="Architect (Japan)" data-fr="Architecte (Japon)" data-tr="İkinci Derece Mimar">二級建築士</li>
-          <li data-ja="宅地建物取引士" data-en="Real Estate Agent" data-fr="Agent immobilier" data-tr="Emlakçı">宅地建物取引士</li>
-          <li data-ja="2級ファイナンシャル・プランニング技能士" data-en="Level 2 Financial Planner" data-fr="Planificateur financier niveau 2" data-tr="Seviye 2 Finansal Planlayıcı">2級ファイナンシャル・プランニング技能士</li>
-        </ul>
+      <button class="toggle-btn" data-translations='{
+        "ja": "もっと見る",
+        "en": "View More",
+        "fr": "Voir plus",
+        "tr": "Daha fazla"
+      }' onclick="toggleProfile()">もっと見る</button>
 
-        <p><strong data-ja="略歴" data-en="Bio" data-fr="Parcours" data-tr="Özgeçmiş">略歴:</strong></p>
-        <ul>
-          <li data-year="1999" data-ja="三重県伊勢市生まれ" data-en="Born in Ise City, Mie Prefecture, Japan" data-fr="Né à Ise, préfecture de Mie, Japon" data-tr="Ise Şehri, Mie Prefecture, Japonya'da doğdu">1999年 三重県伊勢市生まれ</li>
-          <li data-year="2021" data-ja="大学卒業後、ハウスメーカーに就職" data-en="After university graduation, joined a house builder" data-fr="Après l'université, rejoint un constructeur de maisons" data-tr="Üniversite mezuniyetinden sonra bir inşaat firmasında işe başladı">2021年 大学卒業後、ハウスメーカーに就職</li>
-          <li data-year="2024" data-ja="ハウスメーカーを退社し、L'art de vie studio古庄先生に師事" data-en="Left house builder, studied under L'ART DE VIE Inc. Furusho" data-fr="Quitte le constructeur de maisons, étudie sous L'ART DE VIE Inc. Furusho" data-tr="İnşaat firmasından ayrıldı, L'ART DE VIE Inc. Furusho'dan eğitim aldı">2024年 ハウスメーカーを退社し、L'art de vie studio古庄先生に師事</li>
-        </ul>
+      <div class="fold-content" id="profileDetails">
+        <strong data-translations='{
+          "ja": "資格",
+          "en": "Qualifications",
+          "fr": "Qualifications",
+          "tr": "Nitelikler"
+        }'>資格</strong>
+        <ul id="qualList"></ul>
+
+        <strong data-translations='{
+          "ja": "略歴",
+          "en": "Bio",
+          "fr": "Parcours",
+          "tr": "Özgeçmiş"
+        }'>略歴</strong>
+        <ul id="bioList"></ul>
       </div>
     </div>
 
+    <!-- お問い合わせフォーム -->
     <div class="form-container">
-      <button class="toggle-form" onclick="toggleForm()" data-ja="お問い合わせ" data-en="Contact" data-fr="Contact" data-tr="İletişim">お問い合わせ</button>
+      <button class="toggle-form" data-translations='{
+        "ja": "お問い合わせ",
+        "en": "Contact",
+        "fr": "Contact",
+        "tr": "İletişim"
+      }' onclick="toggleForm()">お問い合わせ</button>
 
       <form action="https://formspree.io/f/xdkwbeqe" method="POST">
-        <div class="form-title" data-ja="お問い合わせ" data-en="Contact" data-fr="Contact" data-tr="İletişim">お問い合わせ</div>
+        <div class="form-title" data-translations='{
+          "ja": "お問い合わせ",
+          "en": "Contact",
+          "fr": "Contact",
+          "tr": "İletişim"
+        }'>お問い合わせ</div>
 
-        <label for="name" data-ja="お名前" data-en="Your Name" data-fr="Votre nom" data-tr="Adınız">お名前</label>
-        <input type="text" id="name" name="name" required>
+        <label for="nameInput" data-translations='{
+          "ja": "お名前",
+          "en": "Your Name",
+          "fr": "Votre nom",
+          "tr": "Adınız"
+        }'>お名前</label>
+        <input type="text" id="nameInput" name="name" required>
 
-        <label for="email" data-ja="メールアドレス" data-en="Email" data-fr="Adresse e-mail" data-tr="E-posta adresi">メールアドレス</label>
+        <label for="email" data-translations='{
+          "ja": "メールアドレス",
+          "en": "Email",
+          "fr": "Adresse e-mail",
+          "tr": "E-posta"
+        }'>メールアドレス</label>
         <input type="email" id="email" name="_replyto" required>
 
-        <label for="message" data-ja="メッセージ" data-en="Message" data-fr="Message" data-tr="Mesajınız">メッセージ</label>
+        <label for="message" data-translations='{
+          "ja": "メッセージ",
+          "en": "Message",
+          "fr": "Message",
+          "tr": "Mesajınız"
+        }'>メッセージ</label>
         <textarea id="message" name="message" rows="5" required></textarea>
 
-        <button type="submit" data-ja="送信" data-en="Send" data-fr="Envoyer" data-tr="Gönder">送信</button>
+        <button type="submit" data-translations='{
+          "ja": "送信",
+          "en": "Send",
+          "fr": "Envoyer",
+          "tr": "Gönder"
+        }'>送信</button>
       </form>
     </div>
   </div>
 
   <script>
-    // プロフィール折りたたみ
-    function toggleProfile() {
-      const content = document.querySelector('.fold-content');
-      content.style.display = (content.style.display === 'block') ? 'none' : 'block';
-    }
+    const langSelect = document.getElementById("langSelect");
+    const translatableElements = document.querySelectorAll("[data-translations]");
 
-    // お問い合わせフォーム折りたたみ
-    function toggleForm() {
-      const form = document.querySelector('.form-container form');
-      form.style.display = (form.style.display === 'block') ? 'none' : 'block';
-    }
+    // リスト内容（独立管理）
+    const listData = {
+      ja: {
+        qualList: ["二級建築士", "宅地建物取引士", "2級ファイナンシャル・プランニング技能士"],
+        bioList: ["1999年 三重県伊勢市生まれ", "2021年 大学卒業後、ハウスメーカーに就職", "2024年 ハウスメーカーを退社し、L'art de vie studio古庄先生に師事"]
+      },
+      en: {
+        qualList: ["Architect (Japan)", "Real Estate Agent", "Level 2 Financial Planner"],
+        bioList: ["Born in Ise City, Mie Prefecture, Japan", "Joined a housing manufacturer after university", "Left the company in 2024 and studied under L'ART DE VIE Studio Furusho"]
+      },
+      fr: {
+        qualList: ["Architecte (Japon)", "Agent immobilier", "Planificateur financier niveau 2"],
+        bioList: ["Née à Ise, préfecture de Mie, Japon", "Rejoint un constructeur de maisons après l'université", "Quitte l'entreprise en 2024 et étudie sous L'ART DE VIE Studio Furusho"]
+      },
+      tr: {
+        qualList: ["İkinci Derece Mimar", "Emlakçı", "Seviye 2 Finansal Planlayıcı"],
+        bioList: ["Ise Şehri, Mie, Japonya doğumlu", "Üniversiteden sonra bir konut şirketinde çalıştı", "2024'te ayrıldı, L'ART DE VIE Studio Furusho'da eğitim aldı"]
+      }
+    };
 
-    // 言語切替
-    function changeLanguage(lang) {
-      document.querySelectorAll('[data-ja]').forEach(el => {
-        const text = el.getAttribute(`data-${lang}`);
-        if(text) el.textContent = text;
+    function updateLanguage(lang) {
+      translatableElements.forEach(el => {
+        const texts = JSON.parse(el.dataset.translations);
+        el.textContent = texts[lang] || texts["ja"];
       });
+
+      const qList = document.getElementById("qualList");
+      const bList = document.getElementById("bioList");
+      qList.innerHTML = listData[lang].qualList.map(q => `<li>${q}</li>`).join("");
+      bList.innerHTML = listData[lang].bioList.map(b => `<li>${b}</li>`).join("");
     }
 
-    // 初期表示で選択言語を反映
-    window.addEventListener('DOMContentLoaded', () => {
-      const lang = document.getElementById('langSelect').value;
-      changeLanguage(lang);
-    });
+    function toggleProfile() {
+      const content = document.getElementById("profileDetails");
+      content.style.display = content.style.display === "block" ? "none" : "block";
+    }
+
+    function toggleForm() {
+      const form = document.querySelector("form");
+      form.style.display = form.style.display === "block" ? "none" : "block";
+    }
+
+    langSelect.addEventListener("change", (e) => updateLanguage(e.target.value));
+
+    window.addEventListener("DOMContentLoaded", () => updateLanguage("ja"));
   </script>
 </body>
 </html>
