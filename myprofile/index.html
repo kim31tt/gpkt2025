@@ -187,11 +187,11 @@
       }'>辻貴美恵</h1>
 
       <p data-translations='{
-        "ja": "建築士",
+        "ja": "日本の建築士",
         "en": "Architect (Japan)",
         "fr": "Architecte (Japon)",
-        "tr": "Mimar (Japonya)"
-      }'>建築士</p>
+        "tr": "Japonya Mimarı"
+      }'>日本の建築士</p>
 
       <button class="toggle-btn" 
         id="toggleBtn"
@@ -280,7 +280,6 @@
     const translatableElements = document.querySelectorAll("[data-translations]");
     const toggleBtn = document.getElementById("toggleBtn");
     const profileDetails = document.getElementById("profileDetails");
-
     let currentLang = "ja";
     let isOpen = false;
 
@@ -309,16 +308,14 @@
         const texts = JSON.parse(el.dataset.translations);
         el.textContent = texts[lang] || texts["ja"];
       });
-
       document.getElementById("qualList").innerHTML = listData[lang].qualList.map(q => `<li>${q}</li>`).join("");
       document.getElementById("bioList").innerHTML = listData[lang].bioList.map(b => `<li>${b}</li>`).join("");
-
       updateToggleButtonText();
     }
 
     function updateToggleButtonText() {
-      const moreText = toggleBtn.dataset[`${currentLang}-more`] || "もっと見る";
-      const lessText = toggleBtn.dataset[`${currentLang}-less`] || "閉じる";
+      const moreText = toggleBtn.dataset[`data-${currentLang}-more`] || toggleBtn.dataset[`${currentLang}More`] || toggleBtn.dataset[`${currentLang}-more`] || "もっと見る";
+      const lessText = toggleBtn.dataset[`data-${currentLang}-less`] || toggleBtn.dataset[`${currentLang}Less`] || toggleBtn.dataset[`${currentLang}-less`] || "閉じる";
       toggleBtn.textContent = isOpen ? lessText : moreText;
     }
 
