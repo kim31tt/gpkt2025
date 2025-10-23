@@ -194,6 +194,7 @@
       }'>建築士</p>
 
       <button class="toggle-btn" 
+        id="toggleBtn"
         data-ja-more="もっと見る" 
         data-ja-less="閉じる"
         data-en-more="Show More" 
@@ -203,7 +204,6 @@
         data-tr-more="Daha fazla" 
         data-tr-less="Kapat"
         onclick="toggleProfile()">もっと見る</button>
-
 
       <div class="fold-content" id="profileDetails">
         <strong data-translations='{
@@ -278,8 +278,12 @@
   <script>
     const langSelect = document.getElementById("langSelect");
     const translatableElements = document.querySelectorAll("[data-translations]");
+    const toggleBtn = document.getElementById("toggleBtn");
+    const profileDetails = document.getElementById("profileDetails");
 
-    // リスト内容（独立管理）
+    let currentLang = "ja";
+    let isOpen = false;
+
     const listData = {
       ja: {
         qualList: ["二級建築士", "宅地建物取引士", "2級ファイナンシャル・プランニング技能士"],
@@ -300,20 +304,28 @@
     };
 
     function updateLanguage(lang) {
+      currentLang = lang;
       translatableElements.forEach(el => {
         const texts = JSON.parse(el.dataset.translations);
         el.textContent = texts[lang] || texts["ja"];
       });
 
-      const qList = document.getElementById("qualList");
-      const bList = document.getElementById("bioList");
-      qList.innerHTML = listData[lang].qualList.map(q => `<li>${q}</li>`).join("");
-      bList.innerHTML = listData[lang].bioList.map(b => `<li>${b}</li>`).join("");
+      document.getElementById("qualList").innerHTML = listData[lang].qualList.map(q => `<li>${q}</li>`).join("");
+      document.getElementById("bioList").innerHTML = listData[lang].bioList.map(b => `<li>${b}</li>`).join("");
+
+      updateToggleButtonText();
+    }
+
+    function updateToggleButtonText() {
+      const moreText = toggleBtn.dataset[`${currentLang}-more`] || "もっと見る";
+      const lessText = toggleBtn.dataset[`${currentLang}-less`] || "閉じる";
+      toggleBtn.textContent = isOpen ? lessText : moreText;
     }
 
     function toggleProfile() {
-      const content = document.getElementById("profileDetails");
-      content.style.display = content.style.display === "block" ? "none" : "block";
+      isOpen = !isOpen;
+      profileDetails.style.display = isOpen ? "block" : "none";
+      updateToggleButtonText();
     }
 
     function toggleForm() {
@@ -321,8 +333,7 @@
       form.style.display = form.style.display === "block" ? "none" : "block";
     }
 
-    langSelect.addEventListener("change", (e) => updateLanguage(e.target.value));
-
+    langSelect.addEventListener("change", e => updateLanguage(e.target.value));
     window.addEventListener("DOMContentLoaded", () => updateLanguage("ja"));
   </script>
 </body>
