@@ -193,12 +193,17 @@
         "tr": "Mimar (Japonya)"
       }'>建築士</p>
 
-      <button class="toggle-btn" data-translations='{
-        "ja": "もっと見る",
-        "en": "View More",
-        "fr": "Voir plus",
-        "tr": "Daha fazla"
-      }' onclick="toggleProfile()">もっと見る</button>
+      <button class="toggle-btn" 
+        data-ja-more="もっと見る" 
+        data-ja-less="閉じる"
+        data-en-more="Show More" 
+        data-en-less="Hide"
+        data-fr-more="Voir plus" 
+        data-fr-less="Fermer"
+        data-tr-more="Daha fazla" 
+        data-tr-less="Kapat"
+        onclick="toggleProfile()">もっと見る</button>
+
 
       <div class="fold-content" id="profileDetails">
         <strong data-translations='{
