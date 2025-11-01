@@ -6,16 +6,31 @@
   <title>myprofile</title>
   <link rel="icon" href="favicon_myprofile.png" type="image/png">
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+      background-color: #f0f2f5;
+      overflow-x: hidden; /* 横スクロール防止 */
+    }
 
     body {
-      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
-      margin: 0;
-      background-color: #f0f2f5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1;
       display: flex;
       justify-content: center;
-      padding: 20px;
-      position: relative;
+      width: 100%;
+      padding: 20px; /* 余白をmainに移動 */
     }
 
     .lang-select {
@@ -163,11 +178,23 @@
     }
 
     form button:hover { background-color: #0056b3; }
+
+    /* ▼ フッター（完全に幅いっぱい、下に隙間なし） */
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 0.9rem;
+      color: #555;
+      background: #fff;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      margin-top: auto; /* 下に張り付く */
+    }
+
   </style>
 </head>
 <body>
 
-  <!-- 言語選択 -->
   <select class="lang-select" id="langSelect">
     <option value="ja">🇯🇵 日本語</option>
     <option value="en">🇬🇧 English</option>
@@ -175,106 +202,75 @@
     <option value="tr">🇹🇷 Türkçe</option>
   </select>
 
-  <div class="container">
+  <main>
+    <div class="container">
+      <div class="profile">
+        <img src="me.jpg" alt="プロフィール画像">
+        <h1 data-translations='{
+          "ja": "辻貴美恵",
+          "en": "Kimie Tsuji",
+          "fr": "Kimié Tsuji",
+          "tr": "Kimie Tsuji"
+        }'>辻貴美恵</h1>
 
-    <!-- プロフィール -->
-    <div class="profile">
-      <img src="me.jpg" alt="プロフィール画像">
-      <h1 data-translations='{
-        "ja": "辻貴美恵",
-        "en": "Kimie Tsuji",
-        "fr": "Kimie Tsuji",
-        "tr": "Kimie Tsuji"
-      }'>辻貴美恵</h1>
+        <p data-translations='{
+          "ja": "建築士",
+          "en": "Architect (Japan)",
+          "fr": "Architecte (Japon)",
+          "tr": "Mimarı (Japonya)"
+        }'>日本の建築士</p>
 
-      <p data-translations='{
-        "ja": "建築士",
-        "en": "Architect (Japan)",
-        "fr": "Architecte (Japon)",
-        "tr": "Mimarı (Japonya)"
-      }'>日本の建築士</p>
+        <button class="toggle-btn" id="toggleBtn"
+          data-ja-more="もっと見る" data-ja-less="閉じる"
+          data-en-more="Show More" data-en-less="Hide"
+          data-fr-more="Voir plus" data-fr-less="Fermer"
+          data-tr-more="Daha fazla" data-tr-less="Kapat"
+          onclick="toggleProfile()">もっと見る</button>
 
-      <button class="toggle-btn" 
-        id="toggleBtn"
-        data-ja-more="もっと見る" 
-        data-ja-less="閉じる"
-        data-en-more="Show More" 
-        data-en-less="Hide"
-        data-fr-more="Voir plus" 
-        data-fr-less="Fermer"
-        data-tr-more="Daha fazla" 
-        data-tr-less="Kapat"
-        onclick="toggleProfile()">もっと見る</button>
+        <div class="fold-content" id="profileDetails">
+          <strong data-translations='{
+            "ja": "資格",
+            "en": "Qualifications",
+            "fr": "Qualifications",
+            "tr": "Nitelikler"
+          }'>資格</strong>
+          <ul id="qualList"></ul>
 
-      <div class="fold-content" id="profileDetails">
-        <strong data-translations='{
-          "ja": "資格",
-          "en": "Qualifications",
-          "fr": "Qualifications",
-          "tr": "Nitelikler"
-        }'>資格</strong>
-        <ul id="qualList"></ul>
-
-        <strong data-translations='{
-          "ja": "略歴",
-          "en": "Bio",
-          "fr": "Parcours",
-          "tr": "Özgeçmiş"
-        }'>略歴</strong>
-        <ul id="bioList"></ul>
+          <strong data-translations='{
+            "ja": "略歴",
+            "en": "Bio",
+            "fr": "Parcours",
+            "tr": "Özgeçmiş"
+          }'>略歴</strong>
+          <ul id="bioList"></ul>
+        </div>
       </div>
-    </div>
 
-    <!-- お問い合わせフォーム -->
-    <div class="form-container">
-      <button class="toggle-form" data-translations='{
-        "ja": "お問い合わせ",
-        "en": "Contact",
-        "fr": "Contact",
-        "tr": "İletişim"
-      }' onclick="toggleForm()">お問い合わせ</button>
-
-      <form action="https://formspree.io/f/xdkwbeqe" method="POST">
-        <div class="form-title" data-translations='{
+      <div class="form-container">
+        <button class="toggle-form" data-translations='{
           "ja": "お問い合わせ",
           "en": "Contact",
           "fr": "Contact",
           "tr": "İletişim"
-        }'>お問い合わせ</div>
+        }' onclick="toggleForm()">お問い合わせ</button>
 
-        <label for="nameInput" data-translations='{
-          "ja": "お名前",
-          "en": "Your Name",
-          "fr": "Votre nom",
-          "tr": "Adınız"
-        }'>お名前</label>
-        <input type="text" id="nameInput" name="name" required>
-
-        <label for="email" data-translations='{
-          "ja": "メールアドレス",
-          "en": "Email",
-          "fr": "Adresse e-mail",
-          "tr": "E-posta"
-        }'>メールアドレス</label>
-        <input type="email" id="email" name="_replyto" required>
-
-        <label for="message" data-translations='{
-          "ja": "メッセージ",
-          "en": "Message",
-          "fr": "Message",
-          "tr": "Mesajınız"
-        }'>メッセージ</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-
-        <button type="submit" data-translations='{
-          "ja": "送信",
-          "en": "Send",
-          "fr": "Envoyer",
-          "tr": "Gönder"
-        }'>送信</button>
-      </form>
+        <form action="https://formspree.io/f/xdkwbeqe" method="POST">
+          <div class="form-title">お問い合わせ</div>
+          <label for="nameInput">お名前</label>
+          <input type="text" id="nameInput" name="name" required>
+          <label for="email">メールアドレス</label>
+          <input type="email" id="email" name="_replyto" required>
+          <label for="message">メッセージ</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+          <button type="submit">送信</button>
+        </form>
+      </div>
     </div>
-  </div>
+  </main>
+
+  <footer>
+    © 2025 Kimie Tsuji
+  </footer>
 
   <script>
     const langSelect = document.getElementById("langSelect");
@@ -315,8 +311,8 @@
     }
 
     function updateToggleButtonText() {
-      const moreText = toggleBtn.dataset[`data-${currentLang}-more`] || toggleBtn.dataset[`${currentLang}More`] || toggleBtn.dataset[`${currentLang}-more`] || "もっと見る";
-      const lessText = toggleBtn.dataset[`data-${currentLang}-less`] || toggleBtn.dataset[`${currentLang}Less`] || toggleBtn.dataset[`${currentLang}-less`] || "閉じる";
+      const moreText = toggleBtn.dataset[`${currentLang}More`] || "もっと見る";
+      const lessText = toggleBtn.dataset[`${currentLang}Less`] || "閉じる";
       toggleBtn.textContent = isOpen ? lessText : moreText;
     }
 
