@@ -16,7 +16,7 @@
       height: 100%;
       font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
       background-color: #f0f2f5;
-      overflow-x: hidden; /* 横スクロール防止 */
+      overflow-x: hidden;
     }
 
     body {
@@ -30,7 +30,7 @@
       display: flex;
       justify-content: center;
       width: 100%;
-      padding: 20px; /* 余白をmainに移動 */
+      padding: 20px;
     }
 
     .lang-select {
@@ -179,7 +179,6 @@
 
     form button:hover { background-color: #0056b3; }
 
-    /* ▼ フッター（完全に幅いっぱい、下に隙間なし） */
     footer {
       width: 100%;
       text-align: center;
@@ -188,7 +187,7 @@
       color: #555;
       background: #fff;
       border-top: 1px solid rgba(0,0,0,0.1);
-      margin-top: auto; /* 下に張り付く */
+      margin-top: auto;
     }
 
   </style>
@@ -247,22 +246,51 @@
       </div>
 
       <div class="form-container">
-        <button class="toggle-form" data-translations='{
+        <button class="toggle-form" id="formToggleBtn" data-translations='{
           "ja": "お問い合わせ",
           "en": "Contact",
           "fr": "Contact",
           "tr": "İletişim"
         }' onclick="toggleForm()">お問い合わせ</button>
 
-        <form action="https://formspree.io/f/xdkwbeqe" method="POST">
-          <div class="form-title">お問い合わせ</div>
-          <label for="nameInput">お名前</label>
+        <form action="https://formspree.io/f/xdkwbeqe" method="POST" id="contactForm">
+          <div class="form-title" data-translations='{
+            "ja": "お問い合わせ",
+            "en": "Contact",
+            "fr": "Contact",
+            "tr": "İletişim"
+          }'>お問い合わせ</div>
+
+          <label for="nameInput" data-translations='{
+            "ja": "お名前",
+            "en": "Name",
+            "fr": "Nom",
+            "tr": "İsim"
+          }'>お名前</label>
           <input type="text" id="nameInput" name="name" required>
-          <label for="email">メールアドレス</label>
+
+          <label for="email" data-translations='{
+            "ja": "メールアドレス",
+            "en": "Email",
+            "fr": "E-mail",
+            "tr": "E-posta"
+          }'>メールアドレス</label>
           <input type="email" id="email" name="_replyto" required>
-          <label for="message">メッセージ</label>
+
+          <label for="message" data-translations='{
+            "ja": "メッセージ",
+            "en": "Message",
+            "fr": "Message",
+            "tr": "Mesaj"
+          }'>メッセージ</label>
           <textarea id="message" name="message" rows="5" required></textarea>
-          <button type="submit">送信</button>
+
+          <button type="submit" data-translations='{
+            "ja": "送信",
+            "en": "Send",
+            "fr": "Envoyer",
+            "tr": "Gönder"
+          }'>送信</button>
         </form>
       </div>
     </div>
@@ -305,8 +333,10 @@
         const texts = JSON.parse(el.dataset.translations);
         el.textContent = texts[lang] || texts["ja"];
       });
+
       document.getElementById("qualList").innerHTML = listData[lang].qualList.map(q => `<li>${q}</li>`).join("");
       document.getElementById("bioList").innerHTML = listData[lang].bioList.map(b => `<li>${b}</li>`).join("");
+
       updateToggleButtonText();
     }
 
