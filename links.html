@@ -18,19 +18,8 @@
       align-items: center;
       padding: 2rem;
     }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    h2 {
-      font-size: 1rem;
-      color: #777;
-      margin-bottom: 2rem;
-      font-weight: 400;
-    }
-
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1rem; color: #777; margin-bottom: 2rem; font-weight: 400; }
     .card {
       background-color: #ffffff;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -40,76 +29,106 @@
       max-width: 700px;
       transition: all 0.3s ease;
     }
-
-    .card:hover {
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-    }
-
-    li {
-      margin: 0.4rem 0;
-      padding: 0.2rem 0.6rem;
-      border-left: 2px solid #007aff20;
-      transition: all 0.2s ease;
-    }
-
-    li:hover {
-      background-color: #f8f8f8;
-      border-left: 2px solid #007aff;
-    }
-
-    a {
-      color: #007aff;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
+    .card:hover { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); }
+    ul { list-style: none; padding-left: 0; margin: 0; }
+    li { margin: 0.4rem 0; padding: 0.2rem 0.6rem; border-left: 2px solid #007aff20; transition: all 0.2s ease; }
+    li:hover { background-color: #f8f8f8; border-left: 2px solid #007aff; }
+    a { color: #007aff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
     .level1 { margin-left: 0; font-weight: 600; }
     .level2 { margin-left: 1.5rem; }
     .level3 { margin-left: 3rem; }
     .level4 { margin-left: 4.5rem; }
-
-    footer {
-      margin-top: 3rem;
-      text-align: center;
-      color: #777;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 768px) {
-      body { padding: 1rem; }
-      h1 { font-size: 1.6rem; }
-    }
+    footer { margin-top: 3rem; text-align: center; color: #777; font-size: 0.9rem; }
+    .hidden { display: none; }
+    .inputRow { display:flex; gap:8px; margin-top:12px; }
+    .input { flex:1; padding:10px 12px; border:1px solid #e6e9ee; border-radius:10px; font-size:14px; }
+    .btn { background:#007aff; color:#fff; border:0; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600; }
+    .btn.secondary { background:#6b7280; }
+    @media (max-width:768px){ body{padding:1rem} h1{font-size:1.6rem} }
   </style>
 </head>
 <body>
-  <h1>gpkt2025.com</h1>
-  <h2>サイト構成リンクマップ（Internal Use）</h2>
-
-  <div class="card">
-    <ul>
-      <li class="level1"><a href="/">/</a>　メインページ（Coming Soon）</li>
-
-      <li class="level2"><a href="/myprofile/">/myprofile/</a>　プロフィールページ</li>
-
-      <li class="level2"><a href="/tinyapps/">/tinyapps/</a>　tinyAppsトップ（Coming Soon）</li>
-
-      <li class="level3"><a href="/tinyapps/tinytodo.html">/tinyapps/tinytodo/</a>　tinyTodo マーケティングページ</li>
-      <li class="level4"><a href="/tinyapps/tinytodo.support.html">/tinyapps/tinytodo/tinytodosupport.html</a>　tinyTodo サポートページ</li>
-
-      <li class="level2"><a href="/links.html">/links/</a>　このページ</li>
-    </ul>
+  <!-- パスワード入力画面 -->
+  <div id="gate">
+    <h1>gpkt2025.com</h1>
+    <h2>サイト構成リンクマップ（Internal Use）</h2>
+    <div class="card">
+      <p>このページは保護されています。パスワードを入力してください。</p>
+      <div class="inputRow">
+        <input type="password" id="pw" class="input" placeholder="Password">
+        <button id="submit" class="btn">Enter</button>
+      </div>
+      <p id="msg" style="color:#b43; display:none; margin-top:10px;">パスワードが違います</p>
+    </div>
   </div>
 
-  <footer>©︎ gpkt2025 | internal link viewer</footer>
+  <!-- 認証後コンテンツ -->
+  <div id="content" class="hidden">
+    <div class="card">
+      <ul>
+        <li class="level1"><a href="/">/</a>　メインページ（Coming Soon）</li>
+        <li class="level2"><a href="/myprofile/">/myprofile/</a>　プロフィールページ</li>
+        <li class="level2"><a href="/tinyapps/">/tinyapps/</a>　tinyAppsトップ（Coming Soon）</li>
+        <li class="level3"><a href="/tinyapps/tinytodo.html">/tinyapps/tinytodo.html</a>　tinyTodo マーケティングページ</li>
+        <li class="level4"><a href="/tinyapps/tinytodo.support.html">/tinyapps/tinytodo/tinytodo.support.html</a>　tinyTodo サポートページ</li>
+        <li class="level2"><a href="/links.html">/links/</a>　このページ</li>
+      </ul>
+    </div>
+    <div style="margin-top:14px; text-align:right">
+      <button id="logout" class="btn secondary">Logout</button>
+    </div>
+    <footer>©︎ gpkt2025 | internal link viewer</footer>
+  </div>
+
+<script>
+const PASSWORD_HASH = "da26b77becf8bcc17aa4e59a0205d8910373e5a25e0d7993fd5b2856c21ecdbb"; 
+
+async function sha256Hex(message){
+  const data = new TextEncoder().encode(message);
+  const hash = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+const gate = document.getElementById('gate');
+const content = document.getElementById('content');
+const submit = document.getElementById('submit');
+const pwInput = document.getElementById('pw');
+const msg = document.getElementById('msg');
+const logout = document.getElementById('logout');
+
+async function unlock(){
+  msg.style.display = 'none';
+  const val = (pwInput.value||'').trim();
+  if(!val){ msg.textContent='パスワードを入力してください'; msg.style.display='block'; return; }
+  const hash = await sha256Hex(val);
+  if(hash === PASSWORD_HASH){
+    localStorage.setItem('gpkt_links_auth','1');
+    gate.classList.add('hidden');
+    content.classList.remove('hidden');
+    pwInput.value='';
+  } else {
+    msg.textContent='パスワードが違います';
+    msg.style.display='block';
+    pwInput.value='';
+  }
+}
+
+submit.addEventListener('click', unlock);
+pwInput.addEventListener('keydown', e=>{ if(e.key==='Enter') unlock(); });
+logout?.addEventListener('click', ()=>{
+  localStorage.removeItem('gpkt_links_auth');
+  content.classList.add('hidden');
+  gate.classList.remove('hidden');
+});
+
+/* 前回認証済みなら自動表示 */
+window.addEventListener('load', async ()=>{
+  if(localStorage.getItem('gpkt_links_auth')==='1'){
+    gate.classList.add('hidden');
+    content.classList.remove('hidden');
+  }
+});
+</script>
 </body>
 </html>
