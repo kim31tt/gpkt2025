@@ -3,45 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>toppage</title>
+  <title>tinyApps - Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      background-color: #f7f7f7;
-      color: #333;
+      min-height: 100vh;
       text-align: center;
+      background-color: #ffffff;
+      color: #333333;
+      padding: 2rem;
+      font-family: 'Roboto', sans-serif;
     }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
+    .content {
+      max-width: 600px;
     }
-
-    a {
+    h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    p { font-size: 1.2rem; line-height: 1.6; }
+    a.button {
       display: inline-block;
-      text-decoration: none;
-      background-color: #007bff;
-      color: white;
-      padding: 10px 20px;
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #007aff;
+      color: #fff;
       border-radius: 8px;
-      transition: background-color 0.3s;
-      font-size: 1rem;
+      text-decoration: none;
+      font-weight: 500;
     }
-
-    a:hover {
-      background-color: #0056b3;
-    }
+    a.button:hover { background-color: #0051a8; }
   </style>
 </head>
 <body>
-  <h1>Coming soon</h1>
-  <p><a href="./myprofile/">プロフィールページへ</a></p>
+  <div class="content">
+    <h1>tinyApps Coming Soon</h1>
+    <p>現在、tinyAppsシリーズのページは準備中です。<br>しばらくお待ちください。</p>
+    <a href="tinyTodo/" class="button">tinyTodoへ移動</a>
+  </div>
 </body>
 </html>
