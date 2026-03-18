@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日本語レッスン</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+    .lesson {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background: #45a049;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>オンライン日本語レッスン</h1>
+  <p>楽しく・実践的に日本語を学びましょう！</p>
+</header>
+
+<div class="container">
+
+  <h2>レッスンプラン</h2>
+
+  <div class="lesson">
+    <h3>体験レッスン（30分）</h3>
+    <p>初めての方向け。レベルチェックと簡単な会話。</p>
+    <p><strong>料金：¥1000</strong></p>
+    <a class="btn" href="#">予約する</a>
+  </div>
+
+  <div class="lesson">
+    <h3>通常レッスン（60分）</h3>
+    <p>会話・文法・ビジネス日本語などカスタマイズ可能。</p>
+    <p><strong>料金：¥2000</strong></p>
+    <a class="btn" href="#">予約する</a>
+  </div>
+
+  <h2>講師プロフィール</h2>
+  <p>
+    日本語ネイティブ講師です。初心者から上級者まで対応可能。
+    英語でのサポートもできます。
+  </p>
+
+  <h2>お問い合わせ</h2>
+  <p>Email: your-email@example.com</p>
+
+</div>
+
+<footer>
+  <p>© 2026 Japanese Lessons</p>
+</footer>
+
+</body>
+</html>
