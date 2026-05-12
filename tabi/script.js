@@ -10,12 +10,23 @@ const countryCards = document.querySelectorAll(".country-card");
 
 countryCards.forEach((card) => {
   card.addEventListener("click", () => {
+
+    const grid = card.parentElement;
     const isOpen = card.classList.contains("is-open");
 
-    countryCards.forEach((item) => item.classList.remove("is-open"));
+    countryCards.forEach((item) => {
+      item.classList.remove("is-open");
+    });
 
     if (!isOpen) {
       card.classList.add("is-open");
+
+      grid.prepend(card);
+
+      card.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
     }
   });
 });
