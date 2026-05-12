@@ -1,0 +1,400 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #f4efe8;
+  --text: #222;
+  --muted: #777;
+  --panel: rgba(255, 255, 255, 0.78);
+  --shadow: 0 12px 34px rgba(0, 0, 0, 0.08);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.36;
+  z-index: -1;
+  animation: glowMove 11s ease-in-out infinite alternate;
+}
+
+body::before {
+  background: #d7e6f5;
+  top: -90px;
+  left: -80px;
+}
+
+body::after {
+  background: #f0c7b7;
+  right: -80px;
+  bottom: -90px;
+  animation-delay: 1.4s;
+}
+
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+}
+
+.profile {
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+  transform-style: preserve-3d;
+  transition: transform 0.25s ease;
+}
+
+.hero {
+  position: relative;
+  margin-bottom: 66px;
+}
+
+.cover {
+  width: 100%;
+  height: 150px;
+  border-radius: 26px;
+  display: block;
+  object-fit: cover;
+  box-shadow: var(--shadow);
+  animation: slowZoom 18s ease-in-out infinite alternate;
+}
+
+.avatar {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--bg);
+  background: #fff;
+  position: absolute;
+  left: 50%;
+  bottom: -54px;
+  transform: translateX(-50%);
+  box-shadow: 0 8px 24px rgba(0,0,0,.14);
+  animation: float 5s ease-in-out infinite;
+}
+
+h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 650;
+  letter-spacing: .04em;
+}
+
+.name {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.bio {
+  margin: 18px 0 0;
+  line-height: 1.8;
+  color: #555;
+  font-size: 15px;
+}
+
+.profile-main {
+  display: grid;
+  gap: 14px;
+}
+
+.panel {
+  padding: 17px 18px;
+  background: var(--panel);
+  border-radius: 22px;
+  box-shadow: 0 7px 22px rgba(0,0,0,.045);
+  backdrop-filter: blur(10px);
+}
+
+.label {
+  display: block;
+  margin-bottom: 10px;
+  color: #999;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.love-panel {
+  margin-top: 24px;
+}
+
+.love-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.visited-head p {
+  margin: -3px 0 14px;
+  font-size: 12px;
+  color: #777;
+}
+
+.visited-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 7px;
+}
+
+.country-card {
+  appearance: none;
+  border: 0;
+  background: #fff;
+  border-radius: 999px;
+  padding: 8px 6px;
+  min-height: 40px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+  transition: transform .24s ease, background .24s ease, color .24s ease, border-radius .24s ease;
+  overflow: hidden;
+  text-align: center;
+  font: inherit;
+}
+
+.country-card .flag {
+  display: block;
+  font-size: 22px;
+  line-height: 1;
+  transition: transform .25s ease;
+}
+
+.country-card .cities {
+  display: block;
+  max-height: 0;
+  opacity: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #555;
+  transform: translateY(-4px);
+  transition: max-height .35s ease, opacity .25s ease, transform .25s ease, margin-top .25s ease;
+}
+
+.country-card.is-open {
+  grid-column: span 5;
+  border-radius: 18px;
+  padding: 14px 16px;
+  background: #222;
+  color: #fff;
+}
+
+.country-card.is-open .flag {
+  transform: scale(1.12);
+}
+
+.country-card.is-open .cities {
+  max-height: 90px;
+  opacity: 1;
+  color: #fff;
+  transform: translateY(0);
+  margin-top: 8px;
+}
+
+.country-card:hover {
+  transform: translateY(-3px);
+}
+
+.links {
+  margin-top: 18px;
+}
+
+.links a {
+  display: block;
+  padding: 17px 18px;
+  border-radius: 999px;
+  background: #fff;
+  color: #222;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 8px 22px rgba(0,0,0,.06);
+  transition: transform .22s ease, background .22s ease, color .22s ease;
+}
+
+.links a:hover {
+  transform: translateY(-3px);
+  background: #222;
+  color: #fff;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .72s ease, transform .72s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes slowZoom {
+  from { object-position: 50% 52%; }
+  to { object-position: 50% 44%; }
+}
+
+@keyframes float {
+  0% { margin-bottom: 0; }
+  50% { margin-bottom: 8px; }
+  100% { margin-bottom: 0; }
+}
+
+@keyframes glowMove {
+  from { transform: translate(0, 0); }
+  to { transform: translate(45px, 35px); }
+}
+
+/* Small smartphone */
+@media (max-width: 380px) {
+  .visited-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .country-card.is-open {
+    grid-column: span 4;
+  }
+}
+
+/* Tablet */
+@media (min-width: 700px) {
+  .page {
+    padding: 42px 28px;
+  }
+
+  .profile {
+    max-width: 640px;
+  }
+
+  .cover {
+    height: 210px;
+    border-radius: 32px;
+  }
+
+  .avatar {
+    width: 126px;
+    height: 126px;
+    bottom: -63px;
+  }
+
+  .hero {
+    margin-bottom: 78px;
+  }
+
+  h1 {
+    font-size: 38px;
+  }
+
+  .bio {
+    font-size: 16px;
+  }
+
+  .love-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .visited-grid {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 9px;
+  }
+
+  .country-card {
+    min-height: 46px;
+  }
+
+  .country-card .flag {
+    font-size: 25px;
+  }
+
+  .country-card.is-open {
+    grid-column: span 7;
+  }
+}
+
+/* PC */
+@media (min-width: 1024px) {
+  .page {
+    padding: 56px 36px;
+  }
+
+  .profile {
+    max-width: 980px;
+    text-align: left;
+  }
+
+  .hero {
+    margin-bottom: 34px;
+  }
+
+  .cover {
+    height: 260px;
+  }
+
+  .avatar {
+    left: 42px;
+    bottom: -58px;
+    transform: none;
+  }
+
+  .profile-main {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 22px;
+    align-items: start;
+  }
+
+  .intro-block {
+    padding-top: 18px;
+  }
+
+  h1,
+  .name,
+  .bio {
+    text-align: left;
+    padding-left: 184px;
+  }
+
+  h1 {
+    font-size: 42px;
+  }
+
+  .love-panel,
+  .links {
+    margin-left: 0;
+  }
+
+  .panel {
+    padding: 22px;
+    border-radius: 26px;
+  }
+
+  .visited-panel {
+    margin-top: 0;
+  }
+
+  .visited-grid {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .country-card.is-open {
+    grid-column: span 7;
+  }
+}
