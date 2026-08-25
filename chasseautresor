@@ -1,1 +1,556 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
 
+  <!-- レスポンシブ対応 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>chasseautresor</title>
+
+  <style>
+    /* =========================
+       Base
+    ========================= */
+
+    :root {
+      --color-bg: #f7f5f0;
+      --color-text: #222;
+      --color-sub: #666;
+      --color-accent: #111;
+      --color-white: #fff;
+      --max-width: 1100px;
+      --section-padding: clamp(70px, 10vw, 140px);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--color-text);
+      background: var(--color-bg);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        "Yu Gothic",
+        YuGothic,
+        Meiryo,
+        sans-serif;
+      line-height: 1.8;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(
+        calc(100% - 40px),
+        var(--max-width)
+      );
+      margin: 0 auto;
+    }
+
+    /* =========================
+       Header / Hero
+    ========================= */
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: #ddd;
+
+      /* ↓ 背景画像を差し替える */
+      background-image:
+        linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.65),
+          rgba(0, 0, 0, 0.05)
+        ),
+        url("images/hero.jpg");
+
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-content {
+      width: min(
+        calc(100% - 40px),
+        var(--max-width)
+      );
+      margin: 0 auto;
+      padding: 100px 0 80px;
+      color: #fff;
+    }
+
+    .hero-label {
+      margin: 0 0 15px;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-date {
+      margin: 30px 0 0;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+    }
+
+    /* =========================
+       Section Common
+    ========================= */
+
+    .section {
+      padding: var(--section-padding) 0;
+    }
+
+    .section-title {
+      margin: 0 0 50px;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.3;
+      letter-spacing: 0.03em;
+    }
+
+    .section-title small {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--color-sub);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       Event Information
+    ========================= */
+
+    .event-info {
+      background: var(--color-white);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid #ddd;
+    }
+
+    .info-item {
+      padding: 30px 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .info-item:nth-child(odd) {
+      border-right: 1px solid #ddd;
+    }
+
+    .info-label {
+      margin: 0 0 8px;
+      color: var(--color-sub);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+    }
+
+    .info-value {
+      margin: 0;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 600;
+    }
+
+    /* =========================
+       Story
+    ========================= */
+
+    .story {
+      background: var(--color-bg);
+    }
+
+    .story-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 8vw, 100px);
+      align-items: center;
+    }
+
+    .story-image {
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+
+      /* ↓ 画像を差し替える */
+      content: url("images/story.jpg");
+    }
+
+    .story-text {
+      font-size: 1rem;
+    }
+
+    .story-text p {
+      margin: 0 0 25px;
+    }
+
+    /* =========================
+       SNS
+    ========================= */
+
+    .sns {
+      background: #111;
+      color: #fff;
+    }
+
+    .sns .section-title small {
+      color: #aaa;
+    }
+
+    .sns-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .sns-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 80px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition:
+        background 0.3s ease,
+        color 0.3s ease;
+    }
+
+    .sns-link:hover {
+      background: #fff;
+      color: #111;
+    }
+
+    .sns-name {
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* =========================
+       Footer
+    ========================= */
+
+    footer {
+      padding: 30px 0;
+      background: #111;
+      color: #888;
+      text-align: center;
+      font-size: 0.75rem;
+    }
+
+    /* =========================
+       Responsive
+    ========================= */
+
+    @media (max-width: 768px) {
+      .container {
+        width: min(
+          calc(100% - 30px),
+          var(--max-width)
+        );
+      }
+
+      .hero {
+        min-height: 85svh;
+      }
+
+      .hero-content {
+        width: min(
+          calc(100% - 30px),
+          var(--max-width)
+        );
+        padding: 70px 0 50px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-item:nth-child(odd) {
+        border-right: none;
+      }
+
+      .story-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .story-image {
+        order: -1;
+        aspect-ratio: 16 / 10;
+      }
+
+      .sns-list {
+        grid-template-columns: 1fr;
+      }
+
+      .sns-link {
+        min-height: 65px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 2.6rem;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .section-title {
+        margin-bottom: 35px;
+      }
+
+      .info-item {
+        padding: 22px 5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       Hero
+  ========================= -->
+
+  <header class="hero">
+    <div class="hero-content">
+
+      <!-- イベントの種類など -->
+      <p class="hero-label">
+        EVENT
+      </p>
+
+      <!-- イベント名 -->
+      <h1 class="hero-title">
+        L’événement de chasse au trésor
+      </h1>
+
+      <!-- 開催日時 -->
+      <p class="hero-date">
+        Samedi 29/08/2026
+      </p>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- =========================
+         Event Information
+    ========================= -->
+
+    <section class="section event-info">
+      <div class="container">
+
+        <h2 class="section-title">
+          <small>Information</small>
+          イベント基本情報
+        </h2>
+
+        <div class="info-grid">
+
+          <div class="info-item">
+            <p class="info-label">EVENT</p>
+            <p class="info-value">
+              L’événement de chasse au trésor
+            </p>
+          </div>
+
+          <div class="info-item">
+            <p class="info-label">DATE</p>
+            <p class="info-value">
+              Samedi 29/08/2026
+            </p>
+          </div>
+
+          <div class="info-item">
+            <p class="info-label">TIME</p>
+            <p class="info-value">
+              10h00 - 16h00
+            </p>
+          </div>
+
+          <div class="info-item">
+            <p class="info-label">PLACE</p>
+            <p class="info-value">
+              @L'Université d'Abomey-Calavi(UAC)
+            </p>
+          </div>
+
+          <div class="info-item">
+            <p class="info-label">PRICE</p>
+            <p class="info-value">
+              Prévente : 800 FCFA
+				      Sur place : 1 000 FCFA
+				      VIP : 1 300 FCFA
+            </p>
+          </div>
+
+          <div class="info-item">
+            <p class="info-label">ACCESS</p>
+            <p class="info-value">
+              ***
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         Story
+    ========================= -->
+
+    <section class="section story">
+      <div class="container">
+
+        <div class="story-layout">
+
+          <!-- 画像 -->
+          <div>
+            <img
+              class="story-image"
+              src="images/story.jpg"
+              alt="イベントのイメージ"
+            />
+          </div>
+
+          <!-- ストーリー -->
+          <div>
+
+            <h2 class="section-title">
+              <small>Story</small>
+              イベントのストーリー
+            </h2>
+
+            <div class="story-text">
+
+              <p>
+                ここにイベントが生まれた背景や、
+                開催する理由などの文章を入力してください。
+              </p>
+
+              <p>
+                ここにイベントに込めた想いや、
+                参加する人に伝えたいメッセージを入力してください。
+              </p>
+
+              <p>
+                ここに当日の内容や、
+                イベントを通して実現したいことなどを入力してください。
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         SNS
+    ========================= -->
+
+    <section class="section sns">
+      <div class="container">
+
+        <h2 class="section-title">
+          <small>SNS</small>
+          Follow Us
+        </h2>
+
+        <div class="sns-list">
+
+          <!-- Instagram -->
+          <a
+            class="sns-link"
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="sns-name">
+              Instagram
+            </span>
+          </a>
+
+          <!-- X -->
+          <a
+            class="sns-link"
+            href="https://x.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="sns-name">
+              X
+            </span>
+          </a>
+
+          <!-- Facebook -->
+          <a
+            class="sns-link"
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="sns-name">
+              Facebook
+            </span>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       Footer
+  ========================= -->
+
+  <footer>
+    <div class="container">
+      © 2026 EVENT NAME
+    </div>
+  </footer>
+
+</body>
+</html>
